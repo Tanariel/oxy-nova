@@ -13,6 +13,7 @@ use MrMonat\Translatable\Translatable;
 use Oxygencms\OxyNova\MediaCollections;
 use Illuminate\Support\Facades\Validator;
 use Oxygencms\OxyNova\Traits\SortTranslatableFields;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Page extends Resource
 {
@@ -56,7 +57,7 @@ class Page extends Resource
      * @return array
      * @throws \Exception
      */
-    public function fields(Request $request)
+    public function fields(NovaRequest $request)
     {
         $layouts     = $this::getLayouts();
         $templates   = $this::getTemplates();
@@ -105,7 +106,7 @@ class Page extends Resource
      * @return array
      * @throws \Exception
      */
-    protected function getSeoPanelFields(Request $request)
+    protected function getSeoPanelFields(NovaRequest $request)
     {
         return [
             Translatable::make('Slug')
@@ -177,7 +178,7 @@ class Page extends Resource
      *
      * @return array
      */
-    public function cards(Request $request)
+    public function cards(NovaRequest $request)
     {
         return [];
     }
@@ -189,7 +190,7 @@ class Page extends Resource
      *
      * @return array
      */
-    public function filters(Request $request)
+    public function filters(NovaRequest $request)
     {
         return [];
     }
@@ -201,7 +202,7 @@ class Page extends Resource
      *
      * @return array
      */
-    public function lenses(Request $request)
+    public function lenses(NovaRequest $request)
     {
         return [];
     }
@@ -213,7 +214,7 @@ class Page extends Resource
      *
      * @return array
      */
-    public function actions(Request $request)
+    public function actions(NovaRequest $request)
     {
         return [];
     }
