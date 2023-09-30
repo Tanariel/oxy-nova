@@ -19,7 +19,7 @@
         "php": "^7.3.0|^8",
         "codezero/laravel-unique-translation": "^4.0",
         "spatie/nova-translatable": "^4.0",
-        "spatie/laravel-translatable": "^4.6.0",
+        "spatie/laravel-translatable": "^5",
         "spatie/laravel-medialibrary": "^9.0",
         "laravel/nova": "^4.0",
         "ebess/advanced-nova-media-library": "^4.0"
