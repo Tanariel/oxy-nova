@@ -7,6 +7,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
 use MrMonat\Translatable\Translatable;
 use Oxygencms\OxyNova\Traits\SortTranslatableFields;
+use Laravel\Nova\Http\Requests\NovaRequest;
 
 class Phrase extends Resource
 {
@@ -49,7 +50,7 @@ class Phrase extends Resource
      * @param Request $request
      * @return array
      */
-    public function fields(Request $request)
+    public function fields(NovaRequest $request)
     {
         $groups = $this::getGroups();
 
@@ -82,7 +83,7 @@ class Phrase extends Resource
      *
      * @return array
      */
-    public function cards(Request $request)
+    public function cards(NovaRequest $request)
     {
         return [];
     }
@@ -94,7 +95,7 @@ class Phrase extends Resource
      *
      * @return array
      */
-    public function filters(Request $request)
+    public function filters(NovaRequest $request)
     {
         return [];
     }
@@ -106,7 +107,7 @@ class Phrase extends Resource
      *
      * @return array
      */
-    public function lenses(Request $request)
+    public function lenses(NovaRequest $request)
     {
         return [];
     }
@@ -118,7 +119,7 @@ class Phrase extends Resource
      *
      * @return array
      */
-    public function actions(Request $request)
+    public function actions(NovaRequest $request)
     {
         return [];
     }
