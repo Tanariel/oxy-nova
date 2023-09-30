@@ -16,10 +16,10 @@
         }
     ],
     "require": {
-        "php": ">=7.3.0",
+        "php": ">=7.3.0|>=8",
         "codezero/laravel-unique-translation": "^3.0",
         "mrmonat/nova-translatable": "^2.0",
-        "spatie/laravel-translatable": "^4.2",
+        "spatie/laravel-translatable": "^4.6.0",
         "spatie/laravel-medialibrary": "^9.0",
         "laravel/nova": "^4.0",
         "ebess/advanced-nova-media-library": "^3.0"
