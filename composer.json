@@ -16,9 +16,9 @@
         }
     ],
     "require": {
-        "php": ">=7.3.0|>=8",
+        "php": "^7.3.0|^8",
         "codezero/laravel-unique-translation": "^3.0",
-        "mrmonat/nova-translatable": "^2.0",
+        "spatie/nova-translatable": "^3.0",
         "spatie/laravel-translatable": "^4.6.0",
         "spatie/laravel-medialibrary": "^9.0",
         "laravel/nova": "^4.0",
