@@ -9,11 +9,12 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
-use MrMonat\Translatable\Translatable;
+use Spatie\NovaTranslatable\Translatable;
 use Oxygencms\OxyNova\MediaCollections;
 use Illuminate\Support\Facades\Validator;
 use Oxygencms\OxyNova\Traits\SortTranslatableFields;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Trix;
 
 class Page extends Resource
 {
@@ -109,7 +110,9 @@ class Page extends Resource
     protected function getSeoPanelFields(NovaRequest $request)
     {
         return [
-            Translatable::make('Slug')
+            Translatable::make(
+                [
+                    Text::make('Slug')
                         ->rules('required', 'array', 'distinct', function ($attribute, $value, $fail) use ($request) {
                             $slug_format = '/^[а-я0-9a-z-\/]+$/u';
 
@@ -123,21 +126,11 @@ class Page extends Resource
 
                             if ($validator->fails())
                                 $fail($validator->errors()->first());
-                        })
-                        ->singleLine()
-                        ->sortable(),
-
-            Translatable::make('Title')
-                        ->singleLine()
-                        ->hideFromIndex(),
-
-            Translatable::make('Meta description')
-                        ->singleLine()
-                        ->hideFromIndex(),
-
-            Translatable::make('Meta keywords')
-                        ->singleLine()
-                        ->hideFromIndex(),
+                        }),
+                    Text::make('Title')->hideFromIndex(),
+                    Text::make('Meta description')->hideFromIndex(),
+                    Text::make('Meta keywords')->hideFromIndex(),
+                ])
         ];
     }
 
@@ -149,15 +142,15 @@ class Page extends Resource
     protected function getContentPanelFields()
     {
         return [
-            Translatable::make('Summary')
-                        ->hideFromIndex(),
-
-            Translatable::make('Body')
-                        ->trix()
+            Translatable::make(
+                [
+                    Text::make('Summary')->hideFromIndex(),
+                    Trix::make('Body')
                         ->hideFromIndex()
                         ->hideFromDetail(),
-
-            Translatable::make('Body')->onlyOnDetail()->asHtml(),
+                    Text::make('Body')->onlyOnDetail()->asHtml()
+                
+                ])
         ];
     }
 
