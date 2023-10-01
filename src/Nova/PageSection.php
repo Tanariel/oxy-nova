@@ -90,7 +90,7 @@ class PageSection extends Resource
                                 $fail($validator->errors()->first());
                         }),
                     Text::make('Body')->onlyOnDetail()->asHtml(),
-            ])
+            ]),
 
             BelongsTo::make('Page', 'page', Page::class),
 
