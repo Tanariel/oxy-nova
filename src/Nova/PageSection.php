@@ -11,9 +11,10 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Panel;
-use MrMonat\Translatable\Translatable;
+use Spatie\NovaTranslatable\Translatable;
 use Oxygencms\OxyNova\MediaCollections;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Fields\Trix;
 
 class PageSection extends Resource
 {
@@ -75,11 +76,11 @@ class PageSection extends Resource
                 )
                 ->onUpdateReadOnly(),
 
-            Translatable::make('Body')
-                        ->trix()
-                        ->hideFromIndex()
-                        ->hideFromDetail()
-                        ->rules('sometimes', 'array', 'distinct', function ($attribute, $value, $fail) {
+            Translatable::make([
+                  Trix::make('Body')
+                       ->hideFromIndex()
+                       ->hideFromDetail()
+                       ->rules('sometimes', 'array', 'distinct', function ($attribute, $value, $fail) {
                             $validator = Validator::make(
                                 [$attribute => $value],
                                 ["{$attribute}.*" => 'nullable|string']
@@ -88,8 +89,8 @@ class PageSection extends Resource
                             if ($validator->fails())
                                 $fail($validator->errors()->first());
                         }),
-
-            Translatable::make('Body')->onlyOnDetail()->asHtml(),
+                    Text::make('Body')->onlyOnDetail()->asHtml(),
+            ])
 
             BelongsTo::make('Page', 'page', Page::class),
 
