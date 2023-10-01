@@ -5,7 +5,7 @@ namespace Oxygencms\OxyNova\Nova;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Select;
-use MrMonat\Translatable\Translatable;
+use Spatie\NovaTranslatable\Translatable;
 use Oxygencms\OxyNova\Traits\SortTranslatableFields;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -69,10 +69,9 @@ class Phrase extends Resource
                     "unique:phrases,key,{{resourceId}},id,group,$request->group"
                 ),
 
-            Translatable::make('message')
-                        ->singleLine()
-                        ->rules('required', 'array', 'distinct')
-                        ->sortable(),
+            Translatable::make([
+                 Text::make('message')->rules('required', 'array', 'distinct'),
+            ])
         ];
     }
 
