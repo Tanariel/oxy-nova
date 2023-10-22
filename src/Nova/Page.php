@@ -113,7 +113,7 @@ class Page extends Resource
             Translatable::make(
                 [
                     Text::make('Slug')
-                        ->rules('required', 'array', 'distinct', function ($attribute, $value, $fail) use ($request) {
+                        ->rules('required', 'distinct', function ($attribute, $value, $fail) use ($request) {
                             $slug_format = '/^[а-я0-9a-z-\/]+$/u';
 
                             $slug_rules = ['required', 'string', 'max:140', "regex:$slug_format"];
