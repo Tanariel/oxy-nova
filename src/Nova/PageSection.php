@@ -80,7 +80,7 @@ class PageSection extends Resource
                   Trix::make('Body')
                        ->hideFromIndex()
                        ->hideFromDetail()
-                       ->rules('sometimes', 'array', 'distinct', function ($attribute, $value, $fail) {
+                       ->rules('sometimes', 'distinct', function ($attribute, $value, $fail) {
                             $validator = Validator::make(
                                 [$attribute => $value],
                                 ["{$attribute}.*" => 'nullable|string']
