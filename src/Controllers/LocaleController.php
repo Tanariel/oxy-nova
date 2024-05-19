@@ -35,8 +35,10 @@ class LocaleController extends Controller
             $page = Page::bySlug($slug, $current_locale)->first();
         }
 
-        return isset($page)
-            ? redirect()->to($page->getTranslation('slug', $locale))
-            : redirect()->back();
+        if (empty($page)) {
+            return redirect()->route('home');
+        }
+
+        return redirect()->to($page->getTranslation('slug', $locale));
     }
 }
