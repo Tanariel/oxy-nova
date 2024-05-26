@@ -4,6 +4,7 @@ namespace Oxygencms\OxyNova\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Route;
 use Oxygencms\OxyNova\Models\Page;
 
 class LocaleController extends Controller
