@@ -3,6 +3,8 @@
 namespace Oxygencms\OxyNova\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Route;
 use Oxygencms\OxyNova\Models\Page;
@@ -71,13 +73,13 @@ class LocaleController extends Controller
 
             session()->forget('_previous.url');
             session()->save();
-            return redirect()->route($routeToRedirect, $refererNamedRouteData->parameters(), 301);
+            return Redirect::to(route($routeToRedirect, $refererNamedRouteData->parameters()))->header('Cache-Control', 'no-store, no-cache, must-revalidate');
         }
 
         if (empty($page)) {
-            return redirect()->route('home');
+            return Redirect::to(route('home'))->header('Cache-Control', 'no-store, no-cache, must-revalidate');
         }
 
-        return redirect()->to($page->getTranslation('slug', $locale));
+        return Redirect::to($page->getTranslation('slug', $locale))->header('Cache-Control', 'no-store, no-cache, must-revalidate');
     }
 }
